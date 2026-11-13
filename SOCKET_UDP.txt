@@ -1,0 +1,24 @@
+
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+msg = input("Enter a message: ")
+s.sendto(msg.encode(), ('127.0.0.1', 12345))
+data, a = s.recvfrom(1024)
+print("Message from server:", data.decode())
+s.close()
+
+
+
+SERVER
+
+
+
+
+
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+print("Server is waiting...")
+data, a = s.recvfrom(1024)
+print("Message from client:", data.decode())
+s.sendto("Hello Client!".encode(), a)
+s.close()

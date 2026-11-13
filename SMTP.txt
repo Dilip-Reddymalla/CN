@@ -1,0 +1,20 @@
+import smtplib
+
+sender_email = input("Enter sender email: ")
+app_password = input("Enter app password: ")
+receiver_email = input("Enter receiver email: ")
+message = """Subject: CN Lab SMTP Program
+
+Hello,
+This is a test email sent using Python SMTP.
+"""
+
+try:
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
+    server.login(sender_email, app_password)
+    server.sendmail(sender_email, receiver_email, message)
+    server.quit()
+    print("Email sent successfully!")
+except Exception as e:
+    print("Error:", e)
